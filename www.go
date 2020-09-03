@@ -19,7 +19,7 @@ func logWrap(h http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		t := time.Now()
 		defer func() {
-			fmt.Printf("%s: %s %v\n", r.Method, r.URL.Path, time.Since(t))
+			fmt.Printf("%s: %s: %s %v\n", r.RemoteAddr, r.Method, r.URL.Path, time.Since(t))
 		}()
 		h.ServeHTTP(w, r)
 	})
