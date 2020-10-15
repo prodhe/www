@@ -8,7 +8,11 @@ import (
 )
 
 func main() {
-	hostport := ":8000"
+	var hostport string
+	hostport = os.Getenv("WWW_HOSTPORT")
+	if hostport == "" {
+		hostport = ":8000"
+	}
 
 	cert, key := os.Getenv("TLS_CERT"), os.Getenv("TLS_KEY")
 
